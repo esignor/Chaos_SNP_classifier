@@ -276,7 +276,7 @@ def plot_accuracy(history, dataset, model_net, type_encoder):
 def metrics(X_test, y_test, model_net):
   y_predict = model_net.predict(X_test)
   y_maxPredict = np.arange(len(y_test))
-  print('pred', y_predict)
+  #print('pred', y_predict)
   index = 0
   for a in y_predict:
     if np.all(a > 0.5): mortality = 1
@@ -284,7 +284,7 @@ def metrics(X_test, y_test, model_net):
     np.put(y_maxPredict,[index],[mortality])
     index += 1
 
-  print(y_maxPredict)
+  #print(y_maxPredict)
   # check results
   return confusion_matrix(y_test, y_maxPredict), classification_report(y_test, y_maxPredict, digits=4), y_maxPredict
   
