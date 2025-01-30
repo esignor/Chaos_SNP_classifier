@@ -36,7 +36,6 @@ if __name__ == '__main__':
       X_data = X_data.astype('float32')
       print('nb_classes data', nb_classes)
       shape = X_data.shape[1:]
-      X_display, y_display = shap.datasets.adult(display=True)
 
       X_test, y_test, nb_classes = preprocessing('CNN', type_encoder, dataset_test)
       X_test = np.array(X_test)
