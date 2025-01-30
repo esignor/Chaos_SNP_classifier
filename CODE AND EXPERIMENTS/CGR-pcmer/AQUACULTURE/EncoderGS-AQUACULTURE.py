@@ -1,7 +1,6 @@
 ## MODULE
 import sys
 sys.path.insert(1, 'CODE AND EXPERIMENTS/CGR-pcmer/')
-import VIRUSES
 import AQUACULTURE
 
 from AQUACULTURE.module import * 

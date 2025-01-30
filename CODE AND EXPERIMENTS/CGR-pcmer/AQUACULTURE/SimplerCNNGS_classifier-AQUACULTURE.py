@@ -79,10 +79,8 @@ if __name__ == '__main__':
 
       acc = plot_loss_accuracy(history, model_cnn, X_data, y_data, dataset_train, 'Simpler CNN', type_encoder)
 
-      conf_matrix, class_report = metrics(X_test, y_test, model_cnn)
+      conf_matrix, class_report, y_predict = metrics(X_test, y_test, model_cnn)
       print('\n', conf_matrix, '\n', class_report)
 
       # save the results of classification model
       saveConfMatrixClassReport('Simpler CNN', training_time, acc, conf_matrix, class_report, dataset_test, type_encoder)
-
-      model_cnn.predict(X_data).flatten()

@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
       acc = plot_loss_accuracy(history, model_ResNet101, X_data, y_data, dataset_train, 'ResNet101', type_encoder)
 
-      conf_matrix, class_report = metrics(X_test, y_test, model_ResNet101)
+      conf_matrix, class_report, y_predict = metrics(X_test, y_test, model_ResNet101)
       print('\n', conf_matrix, '\n', class_report)
 
       # save the results of classification model

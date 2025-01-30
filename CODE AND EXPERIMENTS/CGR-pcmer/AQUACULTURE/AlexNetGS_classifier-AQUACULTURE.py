@@ -89,4 +89,4 @@ if __name__ == '__main__':
       # save the results of classification model
       saveConfMatrixClassReport('AlexNet', training_time, acc, conf_matrix, class_report, dataset_test, type_encoder)
       # Shapley Values
-      shapleyImagePlot(X_data, y_data, X_test, y_test, model_AlexNet, dataset_test, channel, dataset_cgr, y_predict)
+      #shapleyImagePlot(X_data, y_data, X_test, y_test, model_AlexNet, dataset_test, channel, dataset_cgr, y_predict)

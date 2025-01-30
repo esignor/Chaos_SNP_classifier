@@ -2,11 +2,17 @@
 
 import sys
 sys.path.insert(1, 'CODE AND EXPERIMENTS/CGR-pcmer/')
-import VIRUSES
 import AQUACULTURE
 from AQUACULTURE.module import *
-from VIRUSES.coord import Coord
 
+
+class Coord:
+    def __init__(self, x=0, y=0):
+        self.X = x
+        self.Y = y
+
+    def get_coords(self):
+        return tuple([self.X, self.Y])
 
 # [tuple(x_coord, y_coord, cgr_point)]
 class CGR_HAPLOTYPE_3POINTS:
