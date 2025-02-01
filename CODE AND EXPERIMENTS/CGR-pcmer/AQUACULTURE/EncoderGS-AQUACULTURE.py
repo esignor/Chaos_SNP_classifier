@@ -28,7 +28,7 @@ def img_setCluster(haplotypes_file, data, mortality_data, out_directory, path_da
             
             print('Extracted haplotype codify', codify_haplotype, type(codify_haplotype), len(codify_haplotype))
         
-            directory_png = out_directory + '/CGR/' + 'GS 4 points/' +  haplotypes_file + '/' + str(cl) + '/' + dir_mortality
+            directory_png = out_directory + '/CGR/' + 'GS 4 points prova/' +  haplotypes_file + '/' + str(cl) + '/' + dir_mortality
             if not os.path.exists(directory_png): os.makedirs(directory_png, exist_ok=True)
             print(directory_png + '/' + title)
 
@@ -56,11 +56,13 @@ if __name__ == '__main__':
     if not os.path.exists(out_directory):
         os.makedirs(out_directory)
 
-
     t1 = threading.Thread(target = img_setCluster, args = (haplotypes_file, data, mortality_data, out_directory, path_datasets, 0))
     t2 = threading.Thread(target = img_setCluster, args = (haplotypes_file, data, mortality_data, out_directory, path_datasets, 1))
-    t1.start(); t2.start()
-    print('Finished threads')
+
+    # if CPU support more threads in parallel call the threas to end of definition Thread (cluster DEI)
+    t1.start(); t2.start() 
+    t1.join(); t2.join()
+    print('Finished threads!!!')
                
 
 
