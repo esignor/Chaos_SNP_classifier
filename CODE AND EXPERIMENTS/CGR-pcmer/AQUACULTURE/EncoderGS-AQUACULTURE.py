@@ -28,7 +28,7 @@ def img_setCluster(haplotypes_file, data, mortality_data, out_directory, path_da
             
             print('Extracted haplotype codify', codify_haplotype, type(codify_haplotype), len(codify_haplotype))
         
-            directory_png = out_directory + '/CGR/' + 'GS 4 points prova/' +  haplotypes_file + '/' + str(cl) + '/' + dir_mortality
+            directory_png = out_directory + '/CGR/' + 'GS 4 points/' +  haplotypes_file + '/' + str(cl) + '/' + dir_mortality
             if not os.path.exists(directory_png): os.makedirs(directory_png, exist_ok=True)
             print(directory_png + '/' + title)
 
