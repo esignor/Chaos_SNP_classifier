@@ -5,7 +5,10 @@ import AQUACULTURE
 from AQUACULTURE.module import *
 
 ## FUNCTIONS
-from AQUACULTURE.functions_Net_AQUACULTURE import create_ResNet101, preprocessing, plot_loss, plot_accuracy, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport
+from AQUACULTURE.functions_Net_AQUACULTURE import create_ResNet101, preprocessing, plot_loss, plot_accuracy, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport # for RGB nets
+#from AQUACULTURE.shapleyValues_functions import shapleyImagePlot
+#from AQUACULTURE.functions_Net_AQUACULTURE import  plot_loss, plot_accuracy, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport # for GS nets
+#from AQUACULTURE.functions_NetGS_AQUACULTURE import create_ResNet50, preprocessing # for GS nets
 
 if __name__ == '__main__':
     
@@ -21,24 +24,26 @@ if __name__ == '__main__':
       ## setting parameters
       dataset_cgr = 'features-active50'
       type_encoder = "Grayscale"
-      dataset_train = 'include-chr3/CGR/GS 4 points/' + dataset_cgr + '/1'
-      dataset_test = 'include-chr3/CGR/GS 4 points/' + dataset_cgr +'/0'
-     #dataset_train = 'include-chr3/FCGR k=8/GS 4 points/' + dataset_cgr + '/1' # FCGR
-     #dataset_test = 'include-chr3/FCGR k=8/GS 4 points/' + dataset_cgr + '/0'
+      dataset_train = 'include-chr3/CGR/GS 4 points/' + dataset_cgr + '/0'
+      dataset_test = 'include-chr3/CGR/GS 4 points/' + dataset_cgr +'/1'
 
       batch_size=15; epoch=30
+      channel = "RGB"
+      #channel = "GS"
     
       X_data, y_data, nb_classes = preprocessing('ResNet', type_encoder, dataset_train)
       X_data = np.array(X_data)
       y_data = np.array(y_data)     
-      X_data = X_data.reshape((-1, 224, 224, 3));    
+      X_data = X_data.reshape((-1, 224, 224, 3)) # for RGB channel
+      #X_data = X_data.reshape((-1, 224, 224, 1)) # for GS channel    
       X_data = X_data.astype('float32')
       print('nb_classes data', nb_classes)
 
       X_test, y_test, nb_classes = preprocessing('ResNet', type_encoder, dataset_test)
       X_test = np.array(X_test)
       y_test = np.array(y_test)     
-      X_test = X_test.reshape((-1, 224, 224, 3));    
+      X_test = X_test.reshape((-1, 224, 224, 3)) # for RGB channel
+      #X_test = X_test.reshape((-1, 224, 224, 1)) # for GS channel   
       X_test = X_test.astype('float32')
       print('nb_classes test', nb_classes)
       
@@ -47,7 +52,6 @@ if __name__ == '__main__':
       
       print('test shape: {}'.format(X_test.shape))
       print('test labels shape: {}'.format(y_test.shape))
-      print('y_test', y_test)
       skf_ResNet101 = StratifiedKFold(n_splits=5,shuffle=True,random_state=20)
       tmp=1; model_ResNet101 = Sequential()      
     
@@ -61,7 +65,7 @@ if __name__ == '__main__':
 
           with ProcessPoolExecutor(n_task) as e:
             e.map(create_ResNet101, range(n_task))      
-            model_ResNet101 = create_ResNet101(model_ResNet101, (224,224,3), nb_classes)
+            model_ResNet101 = create_ResNet101(model_ResNet101, (224,224,3), nb_classes) # for GS net change the size in (_,_,1)
             history=model_ResNet101.fit(X_train[:], y_train[:],
                   batch_size=batch_size,
                   epochs=epoch,
@@ -84,3 +88,7 @@ if __name__ == '__main__':
 
       # save the results of classification model
       saveConfMatrixClassReport('ResNet101', training_time, acc, conf_matrix, class_report, dataset_test, type_encoder)
+
+      # Shapley Values
+      #shapleyImagePlot(X_data, y_data, X_test, y_test, model_ResNet101, dataset_test, channel, dataset_cgr, y_predict) # extension for SHAP in image classification
+
