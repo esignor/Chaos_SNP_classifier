@@ -14,7 +14,7 @@ if __name__ == '__main__':
       type_encoder = "Grayscale"
       dataset_train = 'include-chr3/CGR/GS 4 points/' + dataset_cgr + '/0'
       dataset_test = 'include-chr3/CGR/GS 4 points/' + dataset_cgr +'/1'
-      batch_size=150; epoch=1
+      batch_size=15; epoch=120
 
       X_data, y_data, nb_classes = preprocessing('CNN', type_encoder, dataset_train)
       X_data = np.array(X_data)
