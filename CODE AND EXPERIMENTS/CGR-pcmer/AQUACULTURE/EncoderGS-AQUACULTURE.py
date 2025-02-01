@@ -5,7 +5,7 @@ import AQUACULTURE
 
 from AQUACULTURE.module import * 
 from AQUACULTURE.cgr_haplotype import CGR_HAPLOTYPE_4POINTS
-#from cgr_haplotype_3_points import CGR_HAPLOTYPE
+#from AQUACULTURE.cgr_haplotype import CGR_HAPLOTYPE_3POINTS # for haplotype CGR with 3 points 
 from AQUACULTURE.functions_FCGR_AQUACULTURE import parse_mortality_flag, read_feature_list, parse_haplotypes_codify
 
 def img_setCluster(haplotypes_file, data, mortality_data, out_directory, path_datasets, cl):
@@ -17,7 +17,7 @@ def img_setCluster(haplotypes_file, data, mortality_data, out_directory, path_da
         print('len',len( selected_features))
         for n in range(0, len(selected_features)):
             id_feature = selected_features[n]
-            title = id_feature; print('title', title)
+            title = id_feature; #print('title', title)
        
             flag_mortality = parse_mortality_flag(mortality_data, id_feature)
             print('Extreacted mortality flag', type(flag_mortality), flag_mortality)
@@ -41,7 +41,7 @@ def img_setCluster(haplotypes_file, data, mortality_data, out_directory, path_da
 if __name__ == '__main__':
     
     
-    haplotypes_file = "features-specific80"
+    haplotypes_file = "features-active50"
 
     MAIN_FOLDER = 'CODE AND EXPERIMENTS'
     out_directory = MAIN_FOLDER + '/CGR-pcmer/AQUACULTURE/OUTGrayScaleCGR/Aquaculture/include-chr3'
