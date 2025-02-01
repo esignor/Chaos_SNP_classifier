@@ -21,10 +21,8 @@ if __name__ == '__main__':
       ## setting parameters
       dataset_cgr = 'features-active50'
       type_encoder = "Grayscale"
-      dataset_train = 'include-chr3/CGR/GS 4 points/' + dataset_cgr + '/1' # CGR
-      dataset_test = 'include-chr3/CGR/GS 4 points/' + dataset_cgr +'/0'
-      #dataset_train = 'include-chr3/FCGR k=8/GS 4 points/' + dataset_cgr + '/0' # FCGR
-      #dataset_test = 'include-chr3/FCGR k=8/GS 4 points/' + dataset_cgr + '/1'
+      dataset_train = 'include-chr3/CGR/GS 4 points/' + dataset_cgr + '/0'
+      dataset_test = 'include-chr3/CGR/GS 4 points/' + dataset_cgr +'/1'
       batch_size=30; epoch=30
 
 
