@@ -5,11 +5,11 @@ import AQUACULTURE
 from AQUACULTURE.module import *
 
 ## FUNCTIONS
-from AQUACULTURE.functions_Net_AQUACULTURE import create_AlexNet, preprocessing, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport # RGB
-from AQUACULTURE.shapleyValues_functions import shapleyImagePlot
+from AQUACULTURE.functions_Net_AQUACULTURE import create_AlexNet, preprocessing, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport # for RGB nets
+#from AQUACULTURE.shapleyValues_functions import shapleyImagePlot
 
-#from AQUACULTURE.functions_Net_AQUACULTURE import  plot_loss, plot_accuracy, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport # GS
-#from AQUACULTURE.functions_NetGS_AQUACULTURE import create_AlexNet, preprocessing # GS
+#from AQUACULTURE.functions_Net_AQUACULTURE import  plot_loss, plot_accuracy, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport # for GS nets
+#from AQUACULTURE.functions_NetGS_AQUACULTURE import create_AlexNet, preprocessing #  for GS nets
 if __name__ == '__main__':
     
       num = 123
@@ -50,7 +50,6 @@ if __name__ == '__main__':
       
       print('test shape: {}'.format(X_test.shape))
       print('test labels shape: {}'.format(y_test.shape))
-      print('y test', y_test)
      
       skf_AlexNet = StratifiedKFold(n_splits=5,shuffle=True,random_state=20)
       tmp=1; model_AlexNet = Sequential()      
@@ -65,7 +64,7 @@ if __name__ == '__main__':
 
           with ProcessPoolExecutor(n_task) as e:
             e.map(create_AlexNet, range(n_task))      
-            model_AlexNet = create_AlexNet(model_AlexNet, (227,227,3), nb_classes)
+            model_AlexNet = create_AlexNet(model_AlexNet, (227,227,3), nb_classes) # for GS nets change the size in (_,_,1)
             history=model_AlexNet.fit(X_train[:], y_train[:],
                   batch_size=batch_size,
                   epochs=epoch,
@@ -88,5 +87,6 @@ if __name__ == '__main__':
 
       # save the results of classification model
       saveConfMatrixClassReport('AlexNet', training_time, acc, conf_matrix, class_report, dataset_test, type_encoder)
+
       # Shapley Values
-      #shapleyImagePlot(X_data, y_data, X_test, y_test, model_AlexNet, dataset_test, channel, dataset_cgr, y_predict)
+      #shapleyImagePlot(X_data, y_data, X_test, y_test, model_AlexNet, dataset_test, channel, dataset_cgr, y_predict) # extension for SHAP in image classification
