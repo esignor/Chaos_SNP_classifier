@@ -12,9 +12,9 @@ if __name__ == '__main__':
       ## setting parameters
       dataset_cgr = 'features-active50'
       type_encoder = "Grayscale"
-      dataset_train = 'include-chr3/CGR/GS 4 points/' + dataset_cgr + '/1'
-      dataset_test = 'include-chr3/CGR/GS 4 points/' + dataset_cgr +'/0'
-      batch_size=15; epoch=45
+      dataset_train = 'include-chr3/CGR/GS 4 points/' + dataset_cgr + '/0'
+      dataset_test = 'include-chr3/CGR/GS 4 points/' + dataset_cgr +'/1'
+      batch_size=150; epoch=1
 
       X_data, y_data, nb_classes = preprocessing('CNN', type_encoder, dataset_train)
       X_data = np.array(X_data)
