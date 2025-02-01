@@ -3,13 +3,15 @@ Machine Learning techniques for the phenotypic classification of a sea basses po
 
 
 Software configuration:
-The code developed in “Chaos_SNP_classifier” is in Python programming language version 3.9.21. 
+
+The code developed in “Chaos_SNP_classifier” is in Python programming language version 3.9. 
 To compile the software correctly, installation of the following python libraries is required:
-pandas, matplotlib, scikit-learn, keras
+pandas, matplotlib, scikit-learn, keras, and tensorflow
 
 It is recommended to use in binary package manager such as conda, anconda or miniconda to create a system-level environment independent of the machine's operating system.
 
 The developed software contains:
+
 - The Encoder Unit, which decodes the haplotype sequences of each sea bass in image through Chaos Game Representation algorithm on genomic sequences. 
 - A Classifier Unit is developed, consisting of shallow CNN networks (i.e., Simple CNN and Complex CNN) and Deep Convolutional Neural Networks (i.e., AlexNet, ResNet50 and ResNet101)
 
@@ -18,5 +20,6 @@ In the Classifier Unit a model is implemented for each network tested (Simple CN
 In each model, it is possible to set the number of epochs and batch size on which to set up neural network learning on CGR images e.g., batch_size=15; epoch=150.
 
 Work in progress:
+
 In Deep Convolutional Neural Networks there are extensions for learning on grayscale networks (with GS flag) and the possibility of explaining classification using the SHAP library for image classification. In addition, the algorithm for encoding haplotype sequences on 3-point CGR is implemented.
 
