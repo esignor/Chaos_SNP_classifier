@@ -6,6 +6,7 @@ Software configuration:
 The code developed in “Chaos_SNP_classifier” is in Python programming language version 3.9.21. 
 To compile the software correctly, installation of the following python libraries is required:
 pandas, matplotlib, scikit-learn, keras
+
 It is recommended to use in binary package manager such as conda, anconda or miniconda to create a system-level environment independent of the machine's operating system.
 
 The developed software contains:
