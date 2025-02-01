@@ -5,10 +5,10 @@ import AQUACULTURE
 from AQUACULTURE.module import *
 
 ## FUNCTIONS
-from AQUACULTURE.functions_Net_AQUACULTURE import create_ResNet50, preprocessing, plot_loss, plot_accuracy, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport # RGB
-from AQUACULTURE.shapleyValues_functions import shapleyImagePlot
-#from AQUACULTURE.functions_Net_AQUACULTURE import  plot_loss, plot_accuracy, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport # GS
-#from AQUACULTURE.functions_NetGS_AQUACULTURE import create_ResNet50, preprocessing # GS
+from AQUACULTURE.functions_Net_AQUACULTURE import create_ResNet50, preprocessing, plot_loss, plot_accuracy, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport # for RGB nets
+#from AQUACULTURE.shapleyValues_functions import shapleyImagePlot
+#from AQUACULTURE.functions_Net_AQUACULTURE import  plot_loss, plot_accuracy, metrics, saveModel, plot_loss_accuracy, saveConfMatrixClassReport # for GS nets
+#from AQUACULTURE.functions_NetGS_AQUACULTURE import create_ResNet50, preprocessing # for GS nets
 
 if __name__ == '__main__':
     
@@ -29,7 +29,6 @@ if __name__ == '__main__':
       channel = "RGB"
       #channel = "GS"
 
-      print('TRAIN')
       X_data, y_data, nb_classes = preprocessing('ResNet', type_encoder, dataset_train)
       X_data = np.array(X_data)
       y_data = np.array(y_data)     
@@ -37,7 +36,7 @@ if __name__ == '__main__':
       #X_data = X_data.reshape((-1, 224, 224, 1)) # for GS channel
       X_data = X_data.astype('float32')
       print('nb_classes data', nb_classes)
-      print('TEST')
+
       X_test, y_test, nb_classes = preprocessing('ResNet', type_encoder, dataset_test)
       X_test = np.array(X_test)
       y_test = np.array(y_test)     
@@ -50,7 +49,6 @@ if __name__ == '__main__':
       X_test = np.clip(X_test, 0, 255).astype(np.uint8)
       
       print('nb_classes test', nb_classes)
-      print('Y test', y_test)
       print('train shape: {}'.format(X_data.shape))
       print('train labels shape: {}'.format(y_data.shape))
       
@@ -70,7 +68,7 @@ if __name__ == '__main__':
 
           with ProcessPoolExecutor(n_task) as e:
             e.map(create_ResNet50, range(n_task))      
-            model_ResNet50 = create_ResNet50(model_ResNet50, (224,224,3), nb_classes)
+            model_ResNet50 = create_ResNet50(model_ResNet50, (224,224,3), nb_classes) # for GS nets change the size in (_,_,1)
             history=model_ResNet50.fit(X_train[:], y_train[:],
                   batch_size=batch_size,
                   epochs=epoch,
@@ -95,4 +93,6 @@ if __name__ == '__main__':
       saveConfMatrixClassReport('ResNet50', training_time, acc, conf_matrix, class_report, dataset_test, type_encoder)
       
       # Shapley Values
-      #shapleyImagePlot(X_data, y_data, X_test, y_test, model_ResNet50, dataset_test, channel, dataset_cgr, y_predict)
+      #shapleyImagePlot(X_data, y_data, X_test, y_test, model_ResNet50, dataset_test, channel, dataset_cgr, y_predict)  # extension for SHAP in image classification
+
+
