@@ -23,7 +23,7 @@ if __name__ == '__main__':
       type_encoder = "Grayscale"
       dataset_train = 'include-chr3/CGR/GS 4 points/' + dataset_cgr + '/0'
       dataset_test = 'include-chr3/CGR/GS 4 points/' + dataset_cgr +'/1'
-      batch_size=30; epoch=30
+      batch_size=15; epoch=120
 
 
 
