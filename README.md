@@ -8,7 +8,7 @@ The code developed in “*Chaos_SNP_classifier*” is in Python programming lang
 1) To compile the software correctly, installation of the following python libraries is required:
 *pandas, matplotlib, scikit-learn, keras, and tensorflow*.
 
-2) Also required are the main python packages for scientific computing (*numpy*), modules for implementing container data types (*collections*), asynchronous function execution (*ProcessPoolExecutor*) and image module (*Pillow*)
+2) Also required are the main python packages for scientific computing (*numpy*), modules for implementing container data types (*collections*), asynchronous function execution (*ProcessPoolExecutor*) and image module (*Pillow*).
 
 3) It is recommended to use in binary package manager such as conda, anconda or miniconda to create a system-level environment independent of the machine's operating system.
 
