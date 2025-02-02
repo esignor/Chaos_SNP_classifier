@@ -5,10 +5,12 @@ Machine Learning techniques for the phenotypic classification of a sea basses po
 **Software configuration**:
 
 The code developed in “*Chaos_SNP_classifier*” is in Python programming language version 3.9. 
-To compile the software correctly, installation of the following python libraries is required:
+1) To compile the software correctly, installation of the following python libraries is required:
 *pandas, matplotlib, scikit-learn, keras, and tensorflow*.
 
-It is recommended to use in binary package manager such as conda, anconda or miniconda to create a system-level environment independent of the machine's operating system.
+2) Also required are the main python packages for scientific computing (*numpy*), modules for implementing container data types (*collections*), asynchronous function execution (*ProcessPoolExecutor*) and image module (*Pillow*)
+
+3) It is recommended to use in binary package manager such as conda, anconda or miniconda to create a system-level environment independent of the machine's operating system.
 
 **The developed software contains:**
 
@@ -19,7 +21,7 @@ To run the Encoder Unit, it is necessary to run the *EncoderGS-AQUACULTURE* file
 In the Classifier Unit a model is implemented for each network tested (Simple CNN, Complex CNN, AlexNet, ResNet50, and ResNet101). To perform learning and related classification on a specific network, it is necessary to run the model of the network it refers to (e.g., to classify with AlexNet run the *AlexNetGS_classifier-AQUACULTURE* model).
 In each model, it is possible to set the number of epochs and batch size on which to set up neural network learning on CGR images e.g., batch_size=15; epoch=120. The sea bass are partitioned into two clusters (0 and 1) according to their genomic distance. In the models, the training set is defined as the largest cluster, cluster 0 (with 589 fish) and the test set as cluster 1 (with 401 fish).
 
-Model results are saved in the path *Chaos_SNP_classifier/CODE AND EXPERIMENTS/CGR-pcmer/AQUACULTURE/OUTGrayScaleCGR/Aquaculture/include-chr3/CGR/GS 4 points/features-active50*. In the directory identifying the cluster of trained images, the trained model (.keras) and the accuracy and loss graphs for the validation set are saved; on the other hand, in the directory identifying the tested cluster, the model performance (confusion matrix, training time and classification report on the test set) is saved.
+Model results are saved in the path *Chaos_SNP_classifier/CODE AND EXPERIMENTS/CGR-pcmer/AQUACULTURE/OUTGrayScaleCGR/Aquaculture/include-chr3/CGR/GS 4 points/features-NAME_DATASET*. In the directory identifying the cluster of trained images, the trained model (.keras) and the accuracy and loss graphs for the validation set are saved; on the other hand, in the directory identifying the tested cluster, the model performance (confusion matrix, training time and classification report on the test set) is saved.
 
 
 **Work in progress**:
