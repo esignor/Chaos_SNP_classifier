@@ -15,7 +15,7 @@ The code developed in “*Chaos_SNP_classifier*” is in Python programming lang
 **The developed software contains:**
 
 - The Encoder Unit, which decodes the haplotype sequences of each sea bass in image through Chaos Game Representation algorithm on genomic sequences. 
-- A Classifier Unit is developed, consisting of shallow CNN networks (i.e., Simple CNN and Complex CNN) and Deep Convolutional Neural Networks (i.e., AlexNet, ResNet50 and ResNet101).
+- A Classifier Unit is developed, consisting of shallow CNN networks (i.e., Simple CNN and Complex CNN) and Deep Convolutional Neural Networks (i.e., AlexNet, ResNet50, and ResNet101).
 
 To run the Encoder Unit, it is necessary to run the *EncoderGS-AQUACULTURE* file.  It is necessary that multithread is supported by the machine.
 In the Classifier Unit a model is implemented for each network tested (Simple CNN, Complex CNN, AlexNet, ResNet50, and ResNet101). To perform learning and related classification on a specific network, it is necessary to run the model of the network it refers to (e.g., to classify with AlexNet run the *AlexNetGS_classifier-AQUACULTURE* model).
