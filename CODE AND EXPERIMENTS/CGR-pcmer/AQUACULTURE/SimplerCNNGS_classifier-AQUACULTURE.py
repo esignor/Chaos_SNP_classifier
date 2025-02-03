@@ -67,7 +67,7 @@ if __name__ == '__main__':
           print('Fold'+str(tmp)+'is finished')
       end = time.time()
 
-      val_acc = "Validation accuracy" + str((history.history['val_accuracy'])[-1])
+      #val_acc = "Validation accuracy" + str((history.history['val_accuracy'])[-1])
 
       training_time  = "model training time of Simpler CNN Model with " + type_encoder + " encoder unit: " + str(end-start) + ' s'
       print(training_time)   
@@ -75,10 +75,10 @@ if __name__ == '__main__':
       # save the classification model as a file
       saveModel(dataset_train, model_cnn, 'Simpler CNN', type_encoder)    
 
-      acc = plot_loss_accuracy(history, model_cnn, X_data, y_data, dataset_train, 'Simpler CNN', type_encoder)
+      acc = plot_loss_accuracy(history, model_cnn, X_test, y_test, dataset_train, 'Simpler CNN', type_encoder)
 
       conf_matrix, class_report, y_predict = metrics(X_test, y_test, model_cnn)
       print('\n', conf_matrix, '\n', class_report)
 
       # save the results of classification model
-      saveConfMatrixClassReport('Simpler CNN', training_time, acc, conf_matrix, class_report, dataset_test, type_encoder)
+      saveConfMatrixClassReport('Simpler CNN', acc, training_time, conf_matrix, class_report, dataset_test, type_encoder)
