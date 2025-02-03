@@ -308,7 +308,7 @@ def plot_loss_accuracy(history, model, X_test, y_test, dataset, model_net, type_
   plot_accuracy(history, dataset, model_net, type_encoder)
 
   scores = model.evaluate(X_test, y_test, verbose=2)
-  acc = "%s: %.2f%%" % (model.metrics_names[1], scores[1]*100)
+  acc = "test set %s: %.2f%%" % (model.metrics_names[1], scores[1]*100)
   return acc
   
 def saveConfMatrixClassReport(net, acc, training_time, conf_matrix, class_report, dataset, type_encoder):
@@ -318,7 +318,6 @@ def saveConfMatrixClassReport(net, acc, training_time, conf_matrix, class_report
 
   results_model_file = directory + type_encoder + "results " + net + ".txt"
   print("Save accuracy and classification report!")
-
   with open(results_model_file, 'w') as file:
     file.write('confusion matrix: \n' + str(conf_matrix) + '\n\n')
     file.write('classification report: \n' + str(class_report) + '\n')
