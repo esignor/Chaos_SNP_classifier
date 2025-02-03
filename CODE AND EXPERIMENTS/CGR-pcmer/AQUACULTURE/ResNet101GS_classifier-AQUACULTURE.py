@@ -27,7 +27,7 @@ if __name__ == '__main__':
       dataset_train = 'include-chr3/CGR/GS 4 points/' + dataset_cgr + '/0'
       dataset_test = 'include-chr3/CGR/GS 4 points/' + dataset_cgr +'/1'
 
-      batch_size=15; epoch=30
+      batch_size=15; epoch=120
       channel = "RGB"
       #channel = "GS"
     
@@ -73,7 +73,7 @@ if __name__ == '__main__':
             print('Fold'+str(tmp)+'is finished')
       end = time.time() 
 
-      val_acc = "Validation accuracy" + str((history.history['val_accuracy'])[-1])
+      #val_acc = "Validation accuracy" + str((history.history['val_accuracy'])[-1])
 
       training_time  = "model training time of ResNet101 Model with " + type_encoder + " encoder unit: " + str(end-start) + ' s'
       print(training_time)      
@@ -81,13 +81,13 @@ if __name__ == '__main__':
       # save the classification model as a file
       saveModel(dataset_train, model_ResNet101, 'ResNet101', type_encoder)    
 
-      acc = plot_loss_accuracy(history, model_ResNet101, X_data, y_data, dataset_train, 'ResNet101', type_encoder)
+      acc = plot_loss_accuracy(history, model_ResNet101, X_test, y_test, dataset_train, 'ResNet101', type_encoder)
 
       conf_matrix, class_report, y_predict = metrics(X_test, y_test, model_ResNet101)
       print('\n', conf_matrix, '\n', class_report)
 
       # save the results of classification model
-      saveConfMatrixClassReport('ResNet101', training_time, acc, conf_matrix, class_report, dataset_test, type_encoder)
+      saveConfMatrixClassReport('ResNet101', acc, training_time, conf_matrix, class_report, dataset_test, type_encoder)
 
       # Shapley Values
       #shapleyImagePlot(X_data, y_data, X_test, y_test, model_ResNet101, dataset_test, channel, dataset_cgr, y_predict) # extension for SHAP in image classification

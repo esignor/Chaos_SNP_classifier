@@ -72,7 +72,7 @@ if __name__ == '__main__':
             print('Fold'+str(tmp)+'is finished')
       end = time.time() 
       
-      val_acc = "Validation accuracy" + str((history.history['val_accuracy'])[-1]) 
+      #val_acc = "Validation accuracy" + str((history.history['val_accuracy'])[-1]) 
 
       training_time  = "model training time of AlexNet Model with " + type_encoder + " encoder unit: " + str(end-start) + ' s'
       print(training_time)    
@@ -86,7 +86,7 @@ if __name__ == '__main__':
       print('\n', conf_matrix, '\n', class_report)
 
       # save the results of classification model
-      saveConfMatrixClassReport('AlexNet', training_time, acc, conf_matrix, class_report, dataset_test, type_encoder)
+      saveConfMatrixClassReport('AlexNet', acc, training_time, conf_matrix, class_report, dataset_test, type_encoder)
 
       # Shapley Values
       #shapleyImagePlot(X_data, y_data, X_test, y_test, model_AlexNet, dataset_test, channel, dataset_cgr, y_predict) # extension for SHAP in image classification
